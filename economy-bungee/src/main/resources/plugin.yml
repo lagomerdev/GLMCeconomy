@@ -1,0 +1,4 @@
+main: ${project.parent.groupId}.economy.bungee.GlmcEconomyBungee
+name: ${project.parent.name}
+version: ${project.version}
+depends: [GLMCapi]

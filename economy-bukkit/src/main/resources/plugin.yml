@@ -1,0 +1,7 @@
+main: ${project.parent.groupId}.economy.bukkit.GlmcEconomyBukkit
+name: ${project.parent.name}
+version: ${project.version}
+api-version: 1.18
+depend: [GLMCapi]
+softdepend: [Vault]
+loadbefore: [TradeSystem]

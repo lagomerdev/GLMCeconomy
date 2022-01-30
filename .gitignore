@@ -1,0 +1,10 @@
+*.iml
+.idea
+dependency-reduced-pom.xml
+# Project exclude paths
+/exchange-bukkit/target/
+/exchange-bungee/target/
+/exchange-common/target/
+/economy-bukkit/target/
+/economy-bungee/target/
+/economy-common/target/

@@ -1,0 +1,9 @@
+connections:
+  mysql:
+    host: 'glmc-mysql'
+    port: 3306
+    user: 'root'
+    password: '1234567890'
+    database: 'economy'
+    max_pool_size: 10
+    pool_name: 'database-pool'
