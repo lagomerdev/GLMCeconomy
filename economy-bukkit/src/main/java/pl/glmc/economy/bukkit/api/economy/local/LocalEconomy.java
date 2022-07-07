@@ -2,7 +2,6 @@ package pl.glmc.economy.bukkit.api.economy.local;
 
 import org.bukkit.entity.Player;
 import pl.glmc.economy.bukkit.GlmcEconomyBukkit;
-import pl.glmc.economy.bukkit.api.economy.hook.ValutEconomy;
 import pl.glmc.exchange.common.Economy;
 import pl.glmc.exchange.common.EconomyListener;
 import pl.glmc.exchange.common.EconomyType;
@@ -13,7 +12,7 @@ import java.util.UUID;
 public class LocalEconomy implements EconomyListener {
     private final GlmcEconomyBukkit plugin;
 
-    private Economy playerBankEconomy, playerCashEconomy;
+    private Economy playerBankEconomy;
 
     public LocalEconomy(GlmcEconomyBukkit plugin) {
         this.plugin = plugin;
@@ -23,18 +22,12 @@ public class LocalEconomy implements EconomyListener {
 
         EconomyConfig playerBankConfig = new EconomyConfig("bank", "G€", EconomyType.BANK);
         this.playerBankEconomy = this.plugin.getGlmcExchangeProvider().getEconomyFactory().loadEconomy(playerBankConfig);
-
-        EconomyConfig playerCashConfig = new EconomyConfig("cash", "G€", EconomyType.CASH);
-        this.playerCashEconomy = this.plugin.getGlmcExchangeProvider().getEconomyFactory().loadEconomy(playerCashConfig);
     }
 
     public Economy getPlayerBankEconomy() {
         return this.playerBankEconomy;
     }
 
-    public Economy getPlayerCashEconomy() {
-        return this.playerCashEconomy;
-    }
 
     @Override
     public void loaded(Economy economy) {
@@ -43,13 +36,6 @@ public class LocalEconomy implements EconomyListener {
 
             LocalEconomyCacheListener playerBankCacheListener = new LocalEconomyCacheListener(this.playerBankEconomy);
             this.plugin.getServer().getPluginManager().registerEvents(playerBankCacheListener, this.plugin);
-
-            this.cacheAll(economy);
-        } else if (economy.getEconomyConfig().getName().equals("cash")) {
-            this.playerCashEconomy = economy;
-
-            LocalEconomyCacheListener playerCashCacheListener = new LocalEconomyCacheListener(this.playerCashEconomy);
-            this.plugin.getServer().getPluginManager().registerEvents(playerCashCacheListener, this.plugin);
 
             this.cacheAll(economy);
         }

@@ -18,11 +18,4 @@ public interface GlmcExchangeBungee {
      * @return player bank economy
      */
     Economy getPlayerBankEconomy();
-
-    /**
-     * Gets default player cash economy
-     *
-     * @return player cash economy
-     */
-    Economy getPlayerCashEconomy();
 }

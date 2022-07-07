@@ -11,7 +11,7 @@ import java.util.UUID;
 public class LocalEconomy {
     private final GlmcEconomyBungee plugin;
 
-    private final Economy playerBankEconomy, playerCashEconomy;
+    private final Economy playerBankEconomy;
 
     public LocalEconomy(GlmcEconomyBungee plugin) {
         this.plugin = plugin;
@@ -22,27 +22,17 @@ public class LocalEconomy {
         LocalEconomyCacheListener playerBankCacheListener = new LocalEconomyCacheListener(this.playerBankEconomy);
         this.plugin.getProxy().getPluginManager().registerListener(this.plugin, playerBankCacheListener);
 
-        EconomyConfig playerCashConfig = new EconomyConfig("cash", "G€", EconomyType.CASH);
-        this.playerCashEconomy = this.plugin.getGlmcExchangeProvider().getEconomyFactory().loadEconomy(playerCashConfig);
-
-        LocalEconomyCacheListener playerCashCacheListener = new LocalEconomyCacheListener(this.playerCashEconomy);
-        this.plugin.getProxy().getPluginManager().registerListener(this.plugin, playerCashCacheListener);
 
         this.plugin.getProxy().getScheduler().runAsync(this.plugin, () -> {
             for (ProxiedPlayer onlinePlayer : this.plugin.getProxy().getPlayers()) {
                 UUID playerUUID = onlinePlayer.getUniqueId();
 
                 this.playerBankEconomy.cacheAccount(playerUUID);
-                this.playerCashEconomy.cacheAccount(playerUUID);
             }
         });
     }
 
     public Economy getPlayerBankEconomy() {
         return playerBankEconomy;
-    }
-
-    public Economy getPlayerCashEconomy() {
-        return playerCashEconomy;
     }
 }

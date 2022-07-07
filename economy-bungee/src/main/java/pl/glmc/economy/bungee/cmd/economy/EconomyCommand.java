@@ -73,7 +73,7 @@ public class EconomyCommand extends Command implements TabExecutor {
                 return new ArrayList<>();
             }
             
-            boolean isBasicEconomy = economyProvider.getEconomyConfig().getName().equals("bank") || economyProvider.getEconomyConfig().getName().equals("cash");
+            boolean isBasicEconomy = economyProvider.getEconomyConfig().getName().equals("bank");
 
             Matcher matcher = completionUuidPattern.matcher(arg);
             if (isBasicEconomy) {

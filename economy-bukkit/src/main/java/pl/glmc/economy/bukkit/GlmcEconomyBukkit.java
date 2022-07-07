@@ -37,6 +37,7 @@ public class GlmcEconomyBukkit extends JavaPlugin {
     @Override
     public void onDisable() {
         this.getServer().getServicesManager().unregisterAll(this);
+        this.glmcApiBukkit.unload(this);
     }
 
     private void loadFiles() {

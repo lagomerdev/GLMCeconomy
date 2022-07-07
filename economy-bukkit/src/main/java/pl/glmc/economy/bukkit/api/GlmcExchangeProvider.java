@@ -41,9 +41,4 @@ public class GlmcExchangeProvider implements GlmcExchangeBukkit {
         return this.localEconomy.getPlayerBankEconomy();
     }
 
-    @Override
-    public Economy getPlayerCashEconomy() {
-        return this.localEconomy.getPlayerCashEconomy();
-    }
-
 }

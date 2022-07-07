@@ -45,6 +45,7 @@ public class GlmcEconomyBungee extends Plugin {
     @Override
     public void onDisable() {
         this.databaseProvider.unload();
+        this.glmcApiBungee.unload(this);
     }
 
     public ConfigProvider getConfigProvider() {

@@ -62,9 +62,8 @@ public class BalanceCommand extends Command {
         }
 
         BigDecimal bankBalance = this.plugin.getGlmcExchangeProvider().getPlayerBankEconomy().getCachedBalance(playerUniqueId);
-        BigDecimal cashBalance = this.plugin.getGlmcExchangeProvider().getPlayerCashEconomy().getCachedBalance(playerUniqueId);
 
-        if (bankBalance == null || cashBalance == null) {
+        if (bankBalance == null) {
             TextComponent textComponent = new TextComponent();
             textComponent.addExtra("Nie odnaleziono oczekiwanego konta w ekonomii! \n");
             textComponent.addExtra("Jeżeli uważasz, że to błąd, koniecznie skontaktuj się z administracją poprzez komendę /helpop lub na naszym Discordzie!");
@@ -77,7 +76,6 @@ public class BalanceCommand extends Command {
 
         TextComponent response = new TextComponent();
         response.addExtra( ChatColor.YELLOW + "Stan konta: " + ChatColor.GOLD + this.plugin.getGlmcExchangeProvider().getPlayerBankEconomy().getDecimalFormat().format(bankBalance) + "\n");
-        response.addExtra(ChatColor.YELLOW + "Przy sobie: " + ChatColor.GOLD + this.plugin.getGlmcExchangeProvider().getPlayerCashEconomy().getDecimalFormat().format(cashBalance));
 
         sender.sendMessage(response);
     }

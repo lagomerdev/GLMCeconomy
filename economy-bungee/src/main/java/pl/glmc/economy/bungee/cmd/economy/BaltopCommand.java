@@ -132,19 +132,8 @@ public class BaltopCommand extends Command implements TabExecutor {
         this.plugin.getProxy().getScheduler().runAsync(this.plugin, () -> {
             try {
                 ApiEconomyProvider bankEconomyProvider = (ApiEconomyProvider) this.plugin.getGlmcExchangeProvider().getPlayerBankEconomy();
-                ApiEconomyProvider cashEconomyProvider = (ApiEconomyProvider) this.plugin.getGlmcExchangeProvider().getPlayerCashEconomy();
 
                 HashMap<UUID, BigDecimal> combined = new HashMap<>(bankEconomyProvider.getRegisteredAccounts());
-
-                cashEconomyProvider.getRegisteredAccounts().forEach((uniqueId, balance) -> {
-                    combined.compute(uniqueId, (currentUniqueId, currentBalance) -> {
-                        if (currentBalance == null) {
-                            return balance;
-                        } else {
-                            return currentBalance.add(balance);
-                        }
-                    });
-                });
 
                 this.topBalance = combined.entrySet().stream()
                         .sorted(Map.Entry.<UUID, BigDecimal>comparingByValue().reversed())

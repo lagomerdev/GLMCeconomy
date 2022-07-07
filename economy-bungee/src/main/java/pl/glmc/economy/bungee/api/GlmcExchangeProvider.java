@@ -45,9 +45,4 @@ public class GlmcExchangeProvider implements GlmcExchangeBungee {
     public Economy getPlayerBankEconomy() {
         return this.localEconomy.getPlayerBankEconomy();
     }
-
-    @Override
-    public Economy getPlayerCashEconomy() {
-        return this.localEconomy.getPlayerCashEconomy();
-    }
 }
